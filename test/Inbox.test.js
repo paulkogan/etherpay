@@ -5,7 +5,7 @@ const Web3 = require('web3'); //calling Constructor - talk JS <==> Ethereum
 const ganacheProvider = ganache.provider()
 const web3Instance = new Web3(ganacheProvider);
 const compile = require('../compile')
-const {interface, bytecode} = compile.compileCon("inbox.sol",":Inbox");
+const {interface, bytecode} = compile.compileContract("inbox.sol",":Inbox");
 
 
 let fetchedAccounts;

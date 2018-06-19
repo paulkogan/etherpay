@@ -5,13 +5,18 @@ const solc = require('solc')
 
 
 function compileContract(contractFileName, nodeString) {
-      console.log("\nIN COMPILE: The contract is:"+contractFileName+" and the node is:"+nodeString+"\n")
+      console.log("\nIN COMPILE: The contract is: "+contractFileName+" and the node is: "+nodeString+"\n")
       const contractPath = path.resolve(__dirname, 'contracts', contractFileName)
       const source = fs.readFileSync(contractPath, 'utf8')
-      return solc.compile(source, 1).contracts[nodeString];
-      //return solc.compile(source, 1).contracts[':Inbox'];
-}
 
+       if (nodeString) {
+             return solc.compile(source, 1).contracts[nodeString];
+             //return solc.compile(source, 1).contracts[':Inbox'];
+       }  else {
+            return solc.compile(source, 1);         
+       }
+
+}
 
 
 

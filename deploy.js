@@ -5,6 +5,7 @@ const Web3 = require('web3'); //calling Constructor - talk JS <==> Ethereum
 const compile = require('./compile');
 // call compile with file, node
 const {interface, bytecode} = compile.compileContract("inbox.sol",":Inbox");
+console.log("Interface :"+interface+"\n\n")
 const provider = new HDWalletProvider(
 "topple secret pig weird mixed first chicken subject hello rent delay drive",
 "https://rinkeby.infura.io/GmIJH2gKPhtcbVc3yBQV"
@@ -16,7 +17,8 @@ let inboxResults;
 
 async function deploy() {
       fetchedAccounts = await web3Instance.eth.getAccounts();
-      console.log("Got account to deploy with, its: "+fetchedAccounts[0]);
+      console.log("\nGot account to deploy with, its: "+fetchedAccounts[0]);
+      // needs to pass in an object
       inboxResults = await new web3Instance.eth.Contract(JSON.parse(interface))
       .deploy({
             data: bytecode,
@@ -28,7 +30,6 @@ async function deploy() {
       });
 
       console.log("\nDeployed to: "+inboxResults.options.address+"\n")
-
 
 }
 deploy ()

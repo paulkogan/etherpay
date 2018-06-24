@@ -29,6 +29,7 @@ contract Lottery {
         players.push(msg.sender);
 
     }
+    
     //huge random number
     function randomGen() public view returns (uint) {
         return uint(keccak256(block.difficulty, now, players));

@@ -4,7 +4,7 @@ contract Lottery {
 
     address public owner;
     address[] public players;
-    uint winner;
+    uint public winner;
 
 
     constructor() public { //constructor - whoever creates it is the owner
@@ -16,20 +16,20 @@ contract Lottery {
         _;
     }
 
-    function pickWinner() public restricted returns (uint) {
+    function pickWinner() public restricted view returns (uint) {
         winner = randomGen() % players.length;
         players[winner].transfer(address(this).balance); //send winner the balance of this contract.
-        players = new address[](0)
-        return winner;
+        players = new address[](0) //clear the players array
+        return winner; //not sure why its not returning this
     }
 
 
     function addPlayer() public payable {  //also pays into the contract
         require(msg.value > .01 ether);
-        players.push(msg.sender);
+        players.push(msg.sender);  //add sender to players array
 
     }
-    
+
     //huge random number
     function randomGen() public view returns (uint) {
         return uint(keccak256(block.difficulty, now, players));

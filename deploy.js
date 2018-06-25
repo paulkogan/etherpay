@@ -7,7 +7,7 @@ const compile = require('./compile');
 const {interface, bytecode} = compile.compileContract("inbox.sol",":Inbox");
 console.log("Interface :"+interface+"\n\n")
 const provider = new HDWalletProvider(
-"topple secret pig weird mixed first chicken subject hello rent delay drive",
+"",
 "https://rinkeby.infura.io/GmIJH2gKPhtcbVc3yBQV"
 );
 

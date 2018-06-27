@@ -7,7 +7,11 @@ contract Lottery {
     uint public winner;
 
 
-    constructor() public { //constructor - whoever creates it is the owner
+    /*constructor() public { //constructor - whoever creates it is the owner
+        owner = msg.sender;
+    }*/
+
+    function Lottery () public { //constructor - whoever creates it is the owner
         owner = msg.sender;
     }
 
@@ -16,11 +20,11 @@ contract Lottery {
         _;
     }
 
-    function pickWinner() public restricted view returns (uint) {
+    function pickWinner() public restricted  {
         winner = randomGen() % players.length;
         players[winner].transfer(address(this).balance); //send winner the balance of this contract.
-        players = new address[](0) //clear the players array
-        return winner; //not sure why its not returning this
+        players = new address[](0); //clear the players array
+        //return winner; //not sure why its not returning this
     }
 
 

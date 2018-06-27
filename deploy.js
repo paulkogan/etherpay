@@ -4,7 +4,7 @@ const HDWalletProvider = require("truffle-hdwallet-provider");
 const Web3 = require('web3'); //calling Constructor - talk JS <==> Ethereum
 const compile = require('./compile');
 // call compile with file, node
-const {interface, bytecode} = compile.compileContract("inbox.sol",":Inbox");
+const {interface, bytecode} = compile.compileContract("lottery.sol",":Lottery");
 console.log("Interface :"+interface+"\n\n")
 const provider = new HDWalletProvider(
 "",
@@ -21,7 +21,7 @@ async function deploy() {
       // needs to pass in an object
       deployResults = await new web3Instance.eth.Contract(JSON.parse(interface))
       .deploy({
-            data: bytecode,
+            data: bytecode
             //no arguments to the constructor
         })
       .send({
